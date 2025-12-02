@@ -1,4 +1,5 @@
 import * as fs from "fs"
+import { measureTime, sumTimesMs } from "./utils"
 
 const getSafeCode = (sequence: string[], start = 50): number => {
   let answer = 0
@@ -39,9 +40,14 @@ const getSafeClicks = (sequence: string[], start = 50): number => {
   return answer
 }
 
-const input = fs.readFileSync("./solutions/input.txt", "utf-8")
+const input = fs.readFileSync("./inputs/day1.txt", "utf-8")
 const shifts = input.toString().split("\r\n")
 
-// console.log(getSafeCode(shifts))
+const [part1, part1Time] = measureTime(() => getSafeCode(shifts))
+const [part2, part2Time] = measureTime(() => getSafeClicks(shifts))
 
-console.log(getSafeClicks(shifts))
+console.group("=== Answers === ")
+console.log(`Part 1: ${part1} (${part1Time} ms)`)
+console.log(`Part 2: ${part2} (${part2Time} ms)`)
+console.log(`Total: ${sumTimesMs([part1Time, part2Time])} ms`)
+console.groupEnd()
