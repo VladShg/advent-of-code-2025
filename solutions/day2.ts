@@ -1,5 +1,5 @@
 import * as fs from "fs"
-import { measureTime, sumTimesMs } from "./utils"
+import { logResults } from "./utils"
 
 // Part 1
 const getInvalidIds = (ranges: [number, number][]): number => {
@@ -45,13 +45,7 @@ const ranges = keys.map(
   (val) => val.split("-").map((v) => Number.parseInt(v)) as [number, number]
 )
 
-const rangesForRun = ranges
-
-const [part1, part1Time] = measureTime(() => getInvalidIds(rangesForRun))
-const [part2, part2Time] = measureTime(() => getInvalidGroupIds(rangesForRun))
-
-console.group("=== Answers === ")
-console.log(`Part 1: ${part1} (${part1Time} ms)`)
-console.log(`Part 2: ${part2} (${part2Time} ms)`)
-console.log(`Total: ${sumTimesMs([part1Time, part2Time])} ms`)
-console.groupEnd()
+logResults(
+  () => getInvalidIds(ranges),
+  () => getInvalidGroupIds(ranges)
+)

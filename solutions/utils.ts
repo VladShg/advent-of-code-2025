@@ -14,3 +14,14 @@ export const sumTimesMs = (times: string[]): string => {
   )
   return nsToMs(totalNs)
 }
+
+export const logResults = <T>(fn1: () => T, fn2: () => T): void => {
+  const [part1, part1Time] = measureTime(() => fn1())
+  const [part2, part2Time] = measureTime(() => fn2())
+  
+  console.group("=== Answers === ")
+  console.log(`Part 1: ${part1} (${part1Time} ms)`)
+  console.log(`Part 2: ${part2} (${part2Time} ms)`)
+  console.log(`Total: ${sumTimesMs([part1Time, part2Time])} ms`)
+  console.groupEnd()
+}
