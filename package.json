@@ -7,11 +7,14 @@
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
-    "test": "npx solutions/day1.ts"
+    "solution": "tsx solutions/day1.ts"
   },
   "devDependencies": {
     "@types/node": "^24.10.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "tsx": "^4.21.0"
   }
 }
